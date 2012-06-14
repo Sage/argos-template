@@ -1,0 +1,184 @@
+{
+  "projectName": "Template Mobile",
+  "licenseText": "",
+  "deployDir": "deploy/",
+  "pkgs": [
+    {
+      "name": "Core Mobile Localization (en-US)",
+      "file": "localization/en.js",
+      "isDebug": true,
+      "fileIncludes": [
+        {
+          "text": "en.js",
+          "path": "../localization/"
+        },
+        {
+          "text": "en-US.js",
+          "path": "../../../argos-sdk/libraries/datejs/src/globalization/"
+        }
+      ]
+    },
+    {
+      "name": "Template Mobile Localization (en-US)",
+      "file": "localization/Template/en.js",
+      "isDebug": true,
+      "fileIncludes": [
+        {
+          "text": "en.js",
+          "path": "../localization/Template/"
+        }
+      ]
+    },
+    {
+      "name": "Template Mobile",
+      "file": "content/javascript/argos-Template.js",
+      "isDebug": true,
+      "fileIncludes": [
+        {
+          "text": "Application.js",
+          "path": "../src"
+        },
+        {
+          "text": "MainToolbar.js",
+          "path": "../src/Views"
+        },
+        {
+          "text": "FooterToolbar.js",
+          "path": "../src/Views"
+        },
+        {
+          "text": "Home.js",
+          "path": "../src/Views"
+        },
+        {
+          "text": "Login.js",
+          "path": "../src/Views"
+        },
+        {
+          "text": "Help.js",
+          "path": "../src/Views"
+        },
+        {
+          "text": "List.js",
+          "path": "../src/Views/Account"
+        },
+        {
+          "text": "Detail.js",
+          "path": "../src/Views/Account"
+        },
+        {
+          "text": "Edit.js",
+          "path": "../src/Views/Account"
+        },
+        {
+          "text": "ApplicationModule.js",
+          "path": "../src"
+        }
+      ]
+    },
+    {
+      "name": "Template Mobile Dojo Dependencies",
+      "file": "content/dojo/dojo-dependencies.js",
+      "isDebug": true,
+      "fileIncludes": [
+        {
+          "text": "string.js",
+          "path": "../../../argos-sdk/libraries/dojo/dojo"
+        },
+        {
+          "text": "NodeList-manipulate.js",
+          "path": "../../../argos-sdk/libraries/dojo/dojo"
+        },
+        {
+          "text": "main.js",
+          "path": "../../../argos-sdk/libraries/dojo/dijit"
+        },
+        {
+          "text": "registry.js",
+          "path": "../../../argos-sdk/libraries/dojo/dijit"
+        },
+        {
+          "text": "Stateful.js",
+          "path": "../../../argos-sdk/libraries/dojo/dojo"
+        },
+        {
+          "text": "_WidgetBase.js",
+          "path": "../../../argos-sdk/libraries/dojo/dijit"
+        },
+        {
+          "text": "_OnDijitClickMixin.js",
+          "path": "../../../argos-sdk/libraries/dojo/dijit"
+        },
+        {
+          "text": "window.js",
+          "path": "../../../argos-sdk/libraries/dojo/dojo"
+        },
+        {
+          "text": "manager.js",
+          "path": "../../../argos-sdk/libraries/dojo/dijit/_base"
+        },
+        {
+          "text": "a11y.js",
+          "path": "../../../argos-sdk/libraries/dojo/dijit"
+        },
+        {
+          "text": "focus.js",
+          "path": "../../../argos-sdk/libraries/dojo/dijit"
+        },
+        {
+          "text": "_FocusMixin.js",
+          "path": "../../../argos-sdk/libraries/dojo/dijit"
+        },
+        {
+          "text": "uacss.js",
+          "path": "../../../argos-sdk/libraries/dojo/dojo"
+        },
+        {
+          "text": "hccss.js",
+          "path": "../../../argos-sdk/libraries/dojo/dijit"
+        },
+        {
+          "text": "_Widget.js",
+          "path": "../../../argos-sdk/libraries/dojo/dijit"
+        },
+        {
+          "text": "NodeList-traverse.js",
+          "path": "../../../argos-sdk/libraries/dojo/dojo"
+        },
+        {
+          "text": "url.js",
+          "path": "../../../argos-sdk/libraries/dojo/dojo/_base"
+        },
+        {
+          "text": "stamp.js",
+          "path": "../../../argos-sdk/libraries/dojo/dojo/date"
+        },
+        {
+          "text": "parser.js",
+          "path": "../../../argos-sdk/libraries/dojo/dojo"
+        },
+        {
+          "text": "wai.js",
+          "path": "../../../argos-sdk/libraries/dojo/dijit/_base"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "src": "../content",
+      "dest": "content",
+      "filters": ".*(\\.css|\\.jpg|\\.png|\\.gif)"
+    },
+    {
+      "src": "../configuration",
+      "dest": "configuration",
+      "filters": ".*\\.js"
+    },
+    {
+      "src": "../help",
+      "dest": "help",
+      "filters": ".*\\.html"
+    }
+  ]
+}
