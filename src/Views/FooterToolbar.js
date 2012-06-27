@@ -9,10 +9,7 @@ define('Mobile/Template/Views/FooterToolbar', [
     return declare('Mobile.Template.Views.FooterToolbar', [MainToolbar], {
         // Localization
         copyrightText: '&copy; 2012 Sage Software, Inc. All rights reserved.',
-        logOutConfirmText: 'Are you sure you want to log out?',
-        helpText: 'Help',
         topText: 'Top',
-        logOutText: 'Log Out',
 
         widgetTemplate: new Simplate([
             '<div class="footer-toolbar {%= $.cls %}">',
@@ -36,19 +33,11 @@ define('Mobile/Template/Views/FooterToolbar', [
             }
         },
 
-        helpView: 'help',
-
         showTools: function(tools) {
             var contents = [];
             if ((tools && tools.length <= 0) || (tools !== false))
             {
                 tools = [{
-                    id: 'help',
-                    title: this.helpText,
-                    side: 'left',
-                    fn: this.navigateToHelpView,
-                    scope: this
-                },{
                     id: 'top',
                     title: this.topText,
                     side: 'left',
@@ -76,17 +65,8 @@ define('Mobile/Template/Views/FooterToolbar', [
                 this.set('footerContents', contents.join(''));
             }
         },
-        navigateToHelpView: function() {
-            var view = App.getView(this.helpView);
-            if (view)
-                view.show();
-        },
         scrollToTop: function() {
             scrollTo(0, 1); 
-        },
-        logOut: function() {
-            var sure = window.confirm(this.logOutConfirmText);
-            if (sure) App.logOut();
         }
     });
 });

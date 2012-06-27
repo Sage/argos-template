@@ -8,11 +8,10 @@ define('configuration/development', ['Mobile/Template/ApplicationModule'], funct
             'crm': {
                 isDefault: true,
                 offline: true,
-                url: 'http://localhost/sdata/slx/dynamic/-/',
+                url: '',
                 json: true
             }
-        },
-        enableUpdateNotification: true
+        }
     };
 
 });

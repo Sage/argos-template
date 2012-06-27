@@ -32,7 +32,16 @@ define('Mobile/Template/Application', [
             this.inherited(arguments);
 
             this._loadNavigationState();
-            this._loadPreferences();
+
+            var views = this.getDefaultViews();
+            this.preferences = {
+                home: {
+                    visible: views
+                },
+                configure: {
+                    order: views.slice(0)
+                }
+            };
         },
         _viewTransitionTo: function(view) {
             this.inherited(arguments);
@@ -89,33 +98,8 @@ define('Mobile/Template/Application', [
             }
             catch (e) { }
         },
-        _loadPreferences: function() {
-            try {
-                if (window.localStorage)
-                    this.preferences = json.fromJson(window.localStorage.getItem('preferences'));
-            }
-            catch (e) { }
-
-            //Probably, the first time, its being accessed, or user cleared
-            //the data. So lets initialize the object, with default ones.
-            if (!this.preferences)
-            {
-                var views = this.getDefaultViews();
-
-                this.preferences = {
-                    home: {
-                        visible: views
-                    },
-                    configure: {
-                        order: views.slice(0)
-                    }
-                };
-            }
-        },
         getDefaultViews: function() {
-            return [
-                'account_list'
-            ];
+            return [];
         },
         getExposedViews: function() {
             var exposed = [];

@@ -9,12 +9,7 @@ define('Mobile/Template/ApplicationModule', [
 
     'Mobile/Template/Views/MainToolbar',
     'Mobile/Template/Views/FooterToolbar',
-    'Mobile/Template/Views/Home',
-    'Mobile/Template/Views/Help',
-
-    'Mobile/Template/Views/Account/List',
-    'Mobile/Template/Views/Account/Detail',
-    'Mobile/Template/Views/Account/Edit'
+    'Mobile/Template/Views/Home'
 
 ], function(
     /*
@@ -24,11 +19,7 @@ define('Mobile/Template/ApplicationModule', [
     ApplicationModule,
     MainToolbar,
     FooterToolbar,
-    Home,
-    Help,
-    AccountList,
-    AccountDetail,
-    AccountEdit
+    Home
 ) {
     /*
     All modules return a single object (the module it is defining)
@@ -42,11 +33,6 @@ define('Mobile/Template/ApplicationModule', [
             this.inherited(arguments);
 
             this.registerView(new Home());
-            this.registerView(new Help());
-
-            this.registerView(new AccountList());
-            this.registerView(new AccountDetail());
-            this.registerView(new AccountEdit());
         },
         loadToolbars: function() {
             /*
