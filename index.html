@@ -58,7 +58,7 @@
         require([application].concat(configuration), function(application, configuration) {
             var localization = [
                 'localization/en',
-                'localization/Template/en'
+                'localization/template/en'
             ];
             require(localization.concat('dojo/domReady!'), function() {
                 var instance = new application(configuration);
