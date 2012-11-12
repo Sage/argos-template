@@ -14,7 +14,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="format-detection" content="telephone=no,email=no,address=no" />
 
-    <title>SalesLogix</title>
+    <title>Template</title>
 
     <link rel="apple-touch-icon-precomposed" href="content/images/icon.png" />
 

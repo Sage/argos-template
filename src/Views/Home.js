@@ -42,20 +42,12 @@ define('Mobile/Template/Views/Home', [
 
         //View Properties
         id: 'home',
-        expose: false,
         hideSearch: true,
         customizationSet: 'home',
 
         navigateToView: function(evt, node) {
             var view = node && domAttr.get(node, 'data-view');
             if (view) scene().showView(view);
-        },
-        formatSearchQuery: function(searchQuery) {
-            var expression = new RegExp(searchQuery, 'i');
-
-            return function(entry) {
-                return expression.test(entry.title);
-            };
         },
         getGroupForItem: function(item) {
             if (item.action == 'navigateToView')
