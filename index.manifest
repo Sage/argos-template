@@ -5,11 +5,7 @@ CACHE MANIFEST
 CACHE:
 # css
 content/css/app.css
-content/css/awesome-buttons.css
 content/css/base.css
-content/css/toggle.css
-content/reui/themes/sage-green/base.css
-content/reui/themes/sage-green/theme.css
 
 # images
 content/images/icon.png
@@ -38,7 +34,7 @@ content/dojo/dojo/selector/acme.js
 
 # application
 content/javascript/argos-dependencies.js
-content/javascript/argos-Template.js
+content/javascript/argos-template.js
 content/javascript/argos-sdk.js
 
 # environment
@@ -51,9 +47,6 @@ localization/en.js
 # shell
 index.html
 index.aspx
-
-# help
-help/help.html
 
 NETWORK:
 ../sdata/

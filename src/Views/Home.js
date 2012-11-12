@@ -2,51 +2,63 @@ define('Mobile/Template/Views/Home', [
     'dojo/_base/declare',
     'dojo/_base/array',
     'dojo/_base/lang',
-    'Sage/Platform/Mobile/GroupedList'
+    'dojo/dom-attr',
+    'dojo/store/Memory',
+    'argos/GroupedList',
+    'argos!application',
+    'argos!scene',
+    'argos!customizations'
 ], function(
     declare,
     array,
     lang,
-    GroupedList
+    domAttr,
+    Memory,
+    GroupedList,
+    app,
+    scene,
+    customizations
 ) {
-
     return declare('Mobile.Template.Views.Home', [GroupedList], {
         //Templates
         rowTemplate: new Simplate([
             '<li data-action="{%= $.action %}" {% if ($.view) { %}data-view="{%= $.view %}"{% } %}>',
-            '<div class="list-item-selector"></div>',
-            '{%! $$.itemTemplate %}',
-            '</li>'
-        ]),
-        itemTemplate: new Simplate([
-            '<h3>',
+            '<div class="list-item-static-selector">',
             '{% if ($.icon) { %}',
             '<img src="{%: $.icon %}" alt="icon" class="icon" />',
             '{% } %}',
-            '<span>{%: $.title %}</span>',
-            '</h3>'
+            '</div>',
+            '<div class="list-item-content">{%! $$.itemTemplate %}</div>',
+            '</li>'
+        ]),
+        itemTemplate: new Simplate([
+            '<h3>{%: $.title %}</h3>'
         ]),
 
         //Localization
         titleText: 'Home',
         viewsText: 'Go To',
+        accountsText: 'Accounts',
 
         //View Properties
         id: 'home',
         expose: false,
-        enableSearch: false,
+        hideSearch: true,
         customizationSet: 'home',
 
-        navigateToView: function(params) {
-            var view = App.getView(params && params.view);
-            if (view)
-                view.show();
+        navigateToView: function(evt, node) {
+            var view = node && domAttr.get(node, 'data-view');
+            if (view) scene().showView(view);
         },
-        hasMoreData: function() {
-            return false;
+        formatSearchQuery: function(searchQuery) {
+            var expression = new RegExp(searchQuery, 'i');
+
+            return function(entry) {
+                return expression.test(entry.title);
+            };
         },
-        getGroupForEntry: function(entry) {
-            if (entry.view)
+        getGroupForItem: function(item) {
+            if (item.action == 'navigateToView')
                 return {
                     tag: 'view',
                     title: this.viewsText
@@ -57,80 +69,62 @@ define('Mobile/Template/Views/Home', [
                 title: this.actionsText
             };
         },
-        init: function() {
-            this.inherited(arguments);
-
-            this.connect(App, 'onRegistered', this._onRegistered);
-        },
         createToolLayout: function() {
             return this.tools || (this.tools = {
-                tbar: []
+                top: false
             });
         },
         createLayout: function() {
-            // don't need to cache as it is only re-rendered when there is a change
-            var configured = lang.getObject('preferences.home.visible', false, App) || [],
-                layout = [];
-
-            var visible = {
+            return this.layout || (this.layout = [{
                 id: 'views',
                 children: []
-            };
-
-            for (var i = 0; i < configured.length; i++)
-            {
-                var view = App.getView(configured[i]);
-                if (view)
-                {
-                    visible.children.push({
-                        'action': 'navigateToView',
-                        'view': view.id,
-                        'icon': view.icon,
-                        'title': view.titleText,
-                        'security': view.getSecurity()
-                    });
-                }
-            }
-
-            layout.push(visible);
-
-            return layout;
+            }]);
         },
-        requestData: function() {
-            var layout = this._createCustomizedLayout(this.createLayout()),
+        createDefaultViewOrder: function(layout) {
+            var order = [];
+
+            array.forEach(layout, function(section) {
+                array.forEach(section['children'], function(row) {
+                    if (row['default']) order.push(row['view']);
+                }, this);
+            }, this);
+
+            return order;
+        },
+        createListFrom: function(layout) {
+            var configured = this.createDefaultViewOrder(layout),
+                visible = {},
+                views = null,
                 list = [];
 
-            for (var i = 0; i < layout.length; i++)
-            {
-                var section = layout[i].children;
+            array.forEach(configured, function(view, index) { this[view] = index; }, visible);
+            array.some(layout, function(row) { if (row.id == 'views') { views = row.children; return false; } });
+            array.forEach(views, function(view) { view.position = visible.hasOwnProperty(view.view) ? visible[view.view] : -1; });
 
-                for (var j = 0; j < section.length; j++)
-                {
-                    var row = section[j];
+            views.sort(function(a, b) {
+                return a.position < b.position ? -1 : a.position > b.position ? 1 : 0;
+            });
 
-                    if (row['security'] && !App.hasAccessTo(row['security']))
+            array.forEach(layout, function(section) {
+                array.forEach(section['children'], function(row) {
+                    if (row['position'] <= -1)
                         return;
+
                     if (typeof this.query !== 'function' || this.query(row))
                         list.push(row);
-                }
-            }
+                }, this);
+            }, this);
 
-            this.processFeed({'$resources': list});
+            return list;
         },
-        _onRegistered: function() {
-            this.refreshRequired = true;
-        },
-        refreshRequiredFor: function(options) {
-            var visible = lang.getObject('preferences.home.visible', false, App) || [],
-                shown = this.feed && this.feed['$resources'];
+        createStore: function() {
+            var layout = customizations().apply(customizations().toPath(this.customizationSet, 'home', this.id), this.createLayout()),
+                store = new Memory({
+                    idProperty: 'name',
+                    data: this.createListFrom(layout)
+                });
 
-            if (!visible || !shown || (visible.length != shown.length))
-                return true;
-
-            for (var i = 0; i < visible.length; i++)
-                if (visible[i] != shown[i]['$key']) return true;
-
-            return this.inherited(arguments);
+            return store;
         }
     });
 });

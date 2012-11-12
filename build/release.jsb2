@@ -39,40 +39,28 @@
           "path": "../src"
         },
         {
-          "text": "MainToolbar.js",
-          "path": "../src/Views"
+          "text": "ApplicationScene.js",
+          "path": "../src"
         },
         {
-          "text": "FooterToolbar.js",
-          "path": "../src/Views"
+          "text": "ApplicationLayout.js",
+          "path": "../src"
         },
         {
-          "text": "Home.js",
-          "path": "../src/Views"
-        },
-        {
-          "text": "Login.js",
-          "path": "../src/Views"
-        },
-        {
-          "text": "Help.js",
-          "path": "../src/Views"
-        },
-        {
-          "text": "List.js",
-          "path": "../src/Views/Account"
-        },
-        {
-          "text": "Detail.js",
-          "path": "../src/Views/Account"
-        },
-        {
-          "text": "Edit.js",
-          "path": "../src/Views/Account"
+          "text": "ApplicationViews.js",
+          "path": "../src"
         },
         {
           "text": "ApplicationModule.js",
           "path": "../src"
+        },
+        {
+          "text": "TitleToolbar.js",
+          "path": "../src"
+        },
+        {
+          "text": "Home.js",
+          "path": "../src/Views"
         }
       ]
     },
@@ -174,11 +162,6 @@
       "src": "../configuration",
       "dest": "configuration",
       "filters": ".*\\.js"
-    },
-    {
-      "src": "../help",
-      "dest": "help",
-      "filters": ".*\\.html"
     }
   ]
 }

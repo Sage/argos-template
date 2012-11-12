@@ -8,7 +8,12 @@ define('configuration/development', ['Mobile/Template/ApplicationModule'], funct
             'crm': {
                 isDefault: true,
                 offline: true,
-                url: '',
+                serverName: window.location.hostname,
+                virtualDirectory: 'sdata',
+                applicationName: 'slx',
+                contractName: 'dynamic',
+                port: window.location.port && window.location.port != 80 ? window.location.port : false,
+                protocol: /https/i.test(window.location.protocol) ? 'https' : false,
                 json: true
             }
         }

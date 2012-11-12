@@ -17,41 +17,33 @@
     <title>Template</title>
 
     <link rel="apple-touch-icon-precomposed" href="content/images/icon.png" />
-    <link rel="apple-touch-startup-image" href="content/images/loading.png">
 
     <!-- CSS -->
-    <link type="text/css" rel="stylesheet" href="../../argos-sdk/content/reui/themes/sage-green/theme.css" />
-    <link type="text/css" rel="stylesheet" href="../../argos-sdk/content/css/base.css" />
-    <link type="text/css" rel="stylesheet" href="content/css/toggle.css" />
+    <link type="text/css" rel="stylesheet" href="../../argos-sdk/content/css/layout.css" />
+    <link type="text/css" rel="stylesheet" href="../../argos-sdk/content/css/theme.css" />
     <link type="text/css" rel="stylesheet" href="content/css/app.css" />
 
     <!-- JSON -->
     <script type="text/javascript" src="../../argos-sdk/libraries/json2.js"></script>
 
-    <!-- ReUI -->
+    <!-- iScroll -->
+    <script type="text/javascript" src="../../argos-sdk/libraries/iscroll-lite.js"></script>
     <script type="text/javascript">
-    reConfig = {
-        autoInit: false,
-        legacyMode: false,
-        showInitialPage: false,
-        updateBackButtonText: false
-    };
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
     </script>
-    <script type="text/javascript" src="../../argos-sdk/libraries/reui/reui.js"></script>
 
     <!-- SData Client Library -->
     <script type="text/javascript" src="../../argos-sdk/libraries/sdata/sdata-client-dependencies-debug.js"></script>
     <script type="text/javascript" src="../../argos-sdk/libraries/sdata/sdata-client-debug.js"></script>
 
-    <!-- DateJS -->
-    <script type="text/javascript" src="../../argos-sdk/libraries/datejs/build/date.js"></script>
-    <!-- DateJS Localization -->
-    <% foreach (var include in EnumerateLocalizations("../../argos-sdk", "libraries/datejs/src/globalization")) { %>
-    <script type="text/javascript" src="../../argos-sdk/<%= include.Path %>"></script>
-    <% } %>
+    <!-- Moment.js -->
+    <script type="text/javascript" src="../../argos-sdk/libraries/moment/min/moment.min.js"></script>
 
     <!-- Simplate -->
     <script type="text/javascript" src="../../argos-sdk/libraries/Simplate.js"></script>
+
+    <!-- canvas2image for when HTMLCanvasElement.prototype.toDataURL isn't available -->
+    <script type="text/javascript" src="../../argos-sdk/libraries/canvas2image.js"></script>
 
     <!-- Dojo -->
     <script type="text/javascript" src="../../argos-sdk/libraries/dojo/dojo/dojo.js" data-dojo-config="parseOnLoad:false, async:true, blankGif:'content/images/blank.gif'"></script>
@@ -62,7 +54,7 @@
         { name: 'dojo', location: '../../argos-sdk/libraries/dojo/dojo' },
         { name: 'dijit', location: '../../argos-sdk/libraries/dojo/dijit' },
         { name: 'dojox', location: '../../argos-sdk/libraries/dojo/dojox' },
-        { name: 'Sage/Platform/Mobile', location: '../../argos-sdk/src' },
+        { name: 'argos', location: '../../argos-sdk/src' },
         { name: 'Mobile/Template', location: 'src' }
     ]});
     </script>

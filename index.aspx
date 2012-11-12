@@ -14,14 +14,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="format-detection" content="telephone=no,email=no,address=no" />
 
-    <title>Template</title>
+    <title>SalesLogix</title>
 
     <link rel="apple-touch-icon-precomposed" href="content/images/icon.png" />
-    <link rel="apple-touch-startup-image" href="content/images/loading.png">
 
-    <link type="text/css" rel="stylesheet" href="content/reui/themes/sage-green/theme.css" />
-    <link type="text/css" rel="stylesheet" href="content/css/toggle.css" />
-    <link type="text/css" rel="stylesheet" href="content/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="content/platform/css/layout.css" />
+    <link type="text/css" rel="stylesheet" href="content/platform/css/theme.css" />
     <link type="text/css" rel="stylesheet" href="content/css/app.css" />
 
     <!-- Dojo -->
@@ -39,19 +37,14 @@
     <script type="text/javascript" src="content/dojo/dojo-dependencies.js"></script>
 
     <!-- Core -->
-    <script type="text/javascript">
-    reConfig = {
-        autoInit: false,
-        legacyMode: false,
-        showInitialPage: false,
-        updateBackButtonText: false
-    };
-    </script>
     <script type="text/javascript" src="content/javascript/argos-dependencies.js"></script>
     <script type="text/javascript" src="content/javascript/argos-sdk.js"></script>
+    <script type="text/javascript">
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    </script>
 
     <!-- Application -->
-    <script type="text/javascript" src="content/javascript/argos-Template.js"></script>
+    <script type="text/javascript" src="content/javascript/argos-template.js"></script>
 
     <!-- Modules -->
     <!--{{modules}}-->

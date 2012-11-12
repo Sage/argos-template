@@ -5,7 +5,6 @@ CACHE MANIFEST
 CACHE:
 # css
 @include 'content/css'
-@include 'content/reui/themes'
 
 # images
 @include 'content/images'
@@ -21,10 +20,6 @@ CACHE:
 
 # localization
 @localize 'localization', '{0}.js'
-
-# help
-@localize 'help', 'help_{0}.html'
-help/help.html
 
 NETWORK:
 ../sdata/
